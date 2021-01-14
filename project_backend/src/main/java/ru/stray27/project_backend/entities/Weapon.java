@@ -13,6 +13,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 public class Weapon {
+    @Id
     private Long id;
     private String name;
     private Double strength;

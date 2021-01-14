@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class Resource {
+    @Id
     private Long id;
     private Integer amount;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

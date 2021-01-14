@@ -13,6 +13,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 public class People {
+    @Id
     private Long id;
     private String name;
     private Double health;

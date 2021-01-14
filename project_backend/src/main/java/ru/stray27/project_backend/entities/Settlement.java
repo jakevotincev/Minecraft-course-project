@@ -13,6 +13,7 @@ import java.util.Set;
 @Getter
 @Setter
 public class Settlement {
+    @Id
     private Long id;
     private Integer population;
     private Integer positionX;
