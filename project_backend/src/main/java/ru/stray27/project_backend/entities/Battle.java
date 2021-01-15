@@ -12,7 +12,9 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Battle {
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "battle_gen")
+    @SequenceGenerator(name = "battle_gen", sequenceName = "battle_id_seq", allocationSize = 1)
+    private Integer id;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private People people;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

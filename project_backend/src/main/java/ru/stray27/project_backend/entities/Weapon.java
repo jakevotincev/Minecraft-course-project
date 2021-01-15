@@ -14,7 +14,9 @@ import java.util.Set;
 @NoArgsConstructor
 public class Weapon {
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "weapon_gen")
+    @SequenceGenerator(name = "weapon_gen", sequenceName = "weapon_id_seq", allocationSize = 1)
+    private Integer id;
     private String name;
     private Double strength;
     private Double damage;

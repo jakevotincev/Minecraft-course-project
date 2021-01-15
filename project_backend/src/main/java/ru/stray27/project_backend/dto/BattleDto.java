@@ -8,9 +8,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class BattleDto {
-    private Long id;
-    private Long peopleId;
-    private Long monsterId;
+    private Integer id;
+    private Integer peopleId;
+    private Integer monsterId;
     private Double damageToPerson;
     private Double damageToMonster;
 }

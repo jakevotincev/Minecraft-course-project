@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ResourceDto {
-    private Long id;
+    private Integer id;
     private Integer amount;
-    private Long settlementId;
+    private Integer settlementId;
 }

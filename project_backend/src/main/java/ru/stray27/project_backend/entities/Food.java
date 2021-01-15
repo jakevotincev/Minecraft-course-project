@@ -12,7 +12,9 @@ import javax.persistence.*;
 @Entity
 public class Food {
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "food_gen")
+    @SequenceGenerator(name = "food_gen", sequenceName = "food_id_seq", allocationSize = 1)
+    private Integer id;
     private String name;
     @Column(name = "hp_regen")
     private Double hpRegen;

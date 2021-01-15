@@ -14,7 +14,9 @@ import java.util.Set;
 @Setter
 public class Settlement {
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "settlement_gen")
+    @SequenceGenerator(name = "settlement_gen", sequenceName = "settlement_id_seq", allocationSize = 1)
+    private Integer id;
     private Integer population;
     private Integer positionX;
     private Integer positionY;

@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.CrudRepository;
 import ru.stray27.project_backend.entities.Settlement;
 
-public interface SettlementRepository extends CrudRepository<Settlement, Long> {
+public interface SettlementRepository extends CrudRepository<Settlement, Integer> {
     @Procedure(name = "increasePopulation")
-    void increasePopulation(Long id);
+    void increasePopulation(Integer id);
 }

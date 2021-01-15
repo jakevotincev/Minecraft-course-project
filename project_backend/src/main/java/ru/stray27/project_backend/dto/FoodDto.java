@@ -8,10 +8,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class FoodDto {
-    private Long id;
+    private Integer id;
     private String name;
     private Double hpRegen;
     private Double satiety;
     private Integer amount;
-    private Long settlementId;
+    private Integer settlementId;
 }

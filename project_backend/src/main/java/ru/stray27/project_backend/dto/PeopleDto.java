@@ -8,14 +8,14 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class PeopleDto {
-    private Long id;
+    private Integer id;
     private String name;
     private Double health;
     private Double strength;
     private Double money;
     private Boolean isPregnant;
     private Integer gestationalAge;
-    private Long settlementId;
-    private Long casteId;
-    private Iterable<Long> battlesId;
+    private Integer settlementId;
+    private Integer casteId;
+    private Iterable<Integer> battlesId;
 }

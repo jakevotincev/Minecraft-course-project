@@ -12,7 +12,9 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Animal {
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "animal_gen")
+    @SequenceGenerator(name = "animal_gen", sequenceName = "animal_id_seq", allocationSize = 1)
+    private Integer id;
     private String name;
     private Double health;
     private Double damage;

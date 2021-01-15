@@ -14,7 +14,9 @@ import java.util.Set;
 @Setter
 public class Caste {
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "caste_gen")
+    @SequenceGenerator(name = "caste_gen", sequenceName = "caste_id_seq", allocationSize = 1)
+    private Integer id;
     private String name;
     @Column(name = "hunger_ratio")
     private Double hungerRatio;

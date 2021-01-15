@@ -8,9 +8,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MonsterDto {
-    private Long id;
+    private Integer id;
     private String name;
     private Double health;
     private Double damage;
-    private Iterable<Long> battlesId;
+    private Iterable<Integer> battlesId;
 }

@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class WorldDto {
-    private Long id;
+    private Integer id;
     private String name;
-    private Iterable<Long> settlementsId;
+    private Iterable<Integer> settlementsId;
 }

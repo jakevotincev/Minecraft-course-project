@@ -8,9 +8,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CasteDto {
-    private Long id;
+    private Integer id;
     private String name;
     private Double hungerRatio;
-    Iterable<Long> settlementsId;
-    Iterable<Long> peopleId;
+    Iterable<Integer> settlementsId;
+    Iterable<Integer> peopleId;
 }

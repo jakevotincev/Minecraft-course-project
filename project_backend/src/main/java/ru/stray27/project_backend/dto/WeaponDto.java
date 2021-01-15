@@ -14,10 +14,10 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 public class WeaponDto {
-    private Long id;
+    private Integer id;
     private String name;
     private Double strength;
     private Double damage;
-    private Long ownerId;
-    private Iterable<Long> enchantmentsId;
+    private Integer ownerId;
+    private Iterable<Integer> enchantmentsId;
 }

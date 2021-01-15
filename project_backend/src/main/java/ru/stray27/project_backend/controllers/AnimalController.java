@@ -14,7 +14,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-@RestController("/animal/")
+@RestController
+@RequestMapping("/animal/")
 @CrossOrigin(origins = "*")
 public class AnimalController {
     @Autowired
@@ -38,12 +39,12 @@ public class AnimalController {
     }
 
     @GetMapping("read")
-    private ResponseEntity<?> read(@RequestAttribute(name = "id") Long id) {
+    private ResponseEntity<?> read(@RequestParam(name = "id") Integer id) {
         try {
             Animal animal = animalRepository.findById(id).orElse(null);
             return new ResponseEntity<>(convertToDto(animal), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -51,13 +52,10 @@ public class AnimalController {
     private ResponseEntity<?> create(@RequestBody AnimalDto animalDto) {
         try {
             Animal animal = convertToEntity(animalDto);
-            if (animal.getOwner() == null) {
-                throw new Exception();
-            }
             animalRepository.save(animal);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
     }
@@ -68,15 +66,13 @@ public class AnimalController {
             animalRepository.deleteById(animalDto.getId());
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
 
     private AnimalDto convertToDto(Animal animal) {
-        AnimalDto dto = modelMapper.map(animal, AnimalDto.class);
-        dto.setOwnerId(animal.getOwner().getId());
-        return dto;
+        return modelMapper.map(animal, AnimalDto.class);
     }
 
     private Animal convertToEntity(AnimalDto animalDto) {

@@ -8,9 +8,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EnchantmentDto {
-    private Long id;
+    private Integer id;
     private String name;
     private Double strengthBonus;
     private Double damageBonus;
-    private Iterable<Long> weaponsId;
+    private Iterable<Integer> weaponsId;
 }

@@ -8,11 +8,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AnimalDto {
-    private Long id;
+    private Integer id;
     private String name;
     private Double health;
     private Double damage;
     private Boolean isPregnant;
     private Integer gestationalAge;
-    private Long ownerId;
+    private Integer ownerId;
 }

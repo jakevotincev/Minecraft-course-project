@@ -14,7 +14,9 @@ import java.util.Set;
 @NoArgsConstructor
 public class People {
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "people_gen")
+    @SequenceGenerator(name = "people_gen", sequenceName = "people_id_seq", allocationSize = 1)
+    private Integer id;
     private String name;
     private Double health;
     private Double strength;

@@ -8,13 +8,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SettlementDto {
-    private Long id;
+    private Integer id;
     private Integer population;
     private Integer positionX;
     private Integer positionY;
-    private Long worldId;
-    private Long casteId;
-    private Iterable<Long> foodId;
-    private Iterable<Long> resourcesId;
-    private Iterable<Long> peopleId;
+    private Integer worldId;
+    private Integer casteId;
+    private Iterable<Integer> foodId;
+    private Iterable<Integer> resourcesId;
+    private Iterable<Integer> peopleId;
 }

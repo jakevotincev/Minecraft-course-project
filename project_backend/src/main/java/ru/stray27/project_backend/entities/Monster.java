@@ -4,9 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +14,9 @@ import java.util.Set;
 @NoArgsConstructor
 public class Monster {
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "monster_gen")
+    @SequenceGenerator(name = "monster_gen", sequenceName = "monster_id_seq", allocationSize = 1)
+    private Integer id;
     private String name;
     private Double health;
     private Double damage;
