@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
+      <router-link to="/">Home</router-link>
+      |
       <router-link to="/main">Main</router-link>
     </div>
     <router-view/>
@@ -9,12 +10,25 @@
 </template>
 
 <style>
+@font-face {
+  font-family: "Pixel";
+  src: url("./fonts/myfont.otf") format("opentype");
+}
+
+
+@font-face {
+  font-family: 'Minecraft';
+  src: url('./fonts/mcfont.eot');
+  src: url('./fonts/mcfont.eot?#iefix') format('embedded-opentype'),
+  url('./fonts/mcfont.woff') format('woff'),
+  url('./fonts/mcfont.ttf')  format('truetype');
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Minecraft",serif;
   text-align: center;
-  color: #2c3e50;
+  color: white;
+  font-size: 20px;
 }
 
 #nav {
@@ -23,10 +37,11 @@
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: white;
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #1850a5;
 }
+
 </style>

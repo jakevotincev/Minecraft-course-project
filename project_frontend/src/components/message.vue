@@ -1,10 +1,11 @@
 <template>
-<h1>Course Project</h1>
+<p :style = "color" >{{message}}</p>
 </template>
 
 <script>
 export default {
-name: "Header"
+  props: ['message', 'color'],
+  name: "message"
 }
 </script>
 
