@@ -34,7 +34,7 @@ export default {
       gestationalAge: '',
       ownerId: '',
       people: [],
-      url: '/api',
+      url: 'http://localhost:8080/api',
       ownerName: '',
       message: '',
       color: '',

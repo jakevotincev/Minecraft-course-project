@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       settlementId: '',
-      url: '/api',
+      url: 'http://localhost:8080/api',
       message: '',
       people: []
     }

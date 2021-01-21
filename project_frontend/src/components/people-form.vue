@@ -43,7 +43,7 @@ export default {
       caste: '',
       settlements: [],
       castes: [],
-      url: '/api',
+      url: 'http://localhost:8080/api',
       message: '',
       color: ''
     }

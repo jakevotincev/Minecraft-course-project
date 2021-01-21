@@ -35,7 +35,7 @@ export default {
   data() {
     return {
       animals: [],
-      url: '/api',
+      url: 'http://localhost:8080/api',
       people: []
     }
   },

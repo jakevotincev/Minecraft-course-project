@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       name: '',
-      url: '/api',
+      url: 'http://localhost:8080/api',
       message: '',
       color: ''
     }

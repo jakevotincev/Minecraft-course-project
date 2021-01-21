@@ -38,7 +38,7 @@ export default {
       casteId: '',
       worlds: [],
       castes: [],
-      url: '/api',
+      url: 'http://localhost:8080/api',
       message: '',
       color: ''
     }

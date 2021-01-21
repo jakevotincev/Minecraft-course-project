@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       worlds: [],
-      url: '/api',
+      url: 'http://localhost:8080/api',
       settlements: [],
       castes: []
     }

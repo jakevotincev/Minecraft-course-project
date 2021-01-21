@@ -39,7 +39,7 @@ export default {
   data() {
     return {
       people: [],
-      url: '/api',
+      url: 'http://localhost:8080/api',
       castes: []
     }
   },
