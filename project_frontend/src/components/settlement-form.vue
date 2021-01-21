@@ -1,8 +1,10 @@
 <template>
   <div>
     <div class="createBlock">
-      <label for="positionx">Coordinate X</label><input style="width: 80px" id="positionx" type="text" v-model="positionx"><br>
-      <label for="positiony">Coordinate Y</label><input style="width: 80px" id="positiony" type="text" v-model="positiony"><br>
+      <label for="positionx">Coordinate X</label><input style="width: 80px" id="positionx" type="text"
+                                                        v-model="positionx"><br>
+      <label for="positiony">Coordinate Y</label><input style="width: 80px" id="positiony" type="text"
+                                                        v-model="positiony"><br>
       <label for="world">World</label><select id="world" v-model="worldId">
       <option v-for="world in worlds" v-bind:key="world.id" v-bind:value="world.id">
         {{ world.name }}
@@ -36,7 +38,7 @@ export default {
       casteId: '',
       worlds: [],
       castes: [],
-      url: 'http://localhost:8080/api',
+      url: '/api',
       message: '',
       color: ''
     }
@@ -61,20 +63,25 @@ export default {
   },
   methods: {
     create() {
-      let settlement = {
-        population: this.population, positionX: this.positionx, positionY: this.positiony,
-        worldId: this.worldId, casteId: this.casteId
-      }
-      let settlementApi = this.$resource(this.url + '/settlement/create');
-      settlementApi.save({}, settlement).then(response => {
-        console.log(response);
-        this.color = 'color: white';
-        this.message = "New settlement successfully created";
-      }, response => {
-        console.log(response);
+      if (this.positionx.trim() === '' || this.positiony.trim() === '' || this.worldId.toString().trim() === '' || this.casteId.toString().trim() ==='') {
         this.color = 'color: red';
-        this.message = "Failed to create new settlement";
-      })
+        this.message = "Fill in all the fields";
+      } else {
+        let settlement = {
+          population: this.population, positionX: this.positionx, positionY: this.positiony,
+          worldId: this.worldId, casteId: this.casteId
+        }
+        let settlementApi = this.$resource(this.url + '/settlement/create');
+        settlementApi.save({}, settlement).then(response => {
+          console.log(response);
+          this.color = 'color: white';
+          this.message = "New settlement successfully created";
+        }, response => {
+          console.log(response);
+          this.color = 'color: red';
+          this.message = "Failed to create new settlement";
+        })
+      }
     }
   }
 }

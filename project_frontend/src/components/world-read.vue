@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       worlds: [],
-      url: 'http://localhost:8080/api'
+      url: '/api'
     }
   },
   methods: {

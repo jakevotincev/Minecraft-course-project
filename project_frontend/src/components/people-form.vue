@@ -5,7 +5,8 @@
       <label for="money">Money</label><input style="width: 120px" id="money" type="text" v-model="money"><br>
       <label for="isPreg">Pregnant?</label>
       <input id="isPreg" type="checkbox" v-model="isPregnant"><br>
-      <label for="gestAge" v-show="isPregnant">Gestational age</label><input style="width: 80px" v-show="isPregnant" id="gestAge"
+      <label for="gestAge" v-show="isPregnant">Gestational age</label><input style="width: 80px" v-show="isPregnant"
+                                                                             id="gestAge"
                                                                              type="text"
                                                                              v-model="gestationalAge">
       <br>
@@ -42,7 +43,7 @@ export default {
       caste: '',
       settlements: [],
       castes: [],
-      url: 'http://localhost:8080/api',
+      url: '/api',
       message: '',
       color: ''
     }
@@ -55,39 +56,45 @@ export default {
         data.forEach(caste => {
           this.castes.push(caste);
         })
+        settlementApi.get().then(result => {
+          result.json().then(data => {
+            data.forEach(settlement => {
+              settlement.caste = this.castes[settlement.casteId - 1].name;
+              this.settlements.push(settlement)
+            })
+          })
+        })
       })
     });
 
-    settlementApi.get().then(result => {
-      result.json().then(data => {
-        data.forEach(settlement => {
-          settlement.caste = this.castes[settlement.casteId - 1].name;
-          this.settlements.push(settlement)
-        })
-      })
-    })
 
   },
   methods: {
     create() {
-      if (!this.isPregnant) this.gestationalAge = -1;
+      let gestationalAge = this.gestationalAge;
+      if (!this.isPregnant) gestationalAge = -1;
 
-      let human = {
-        name: this.name, health: this.health, strength: this.strength,
-        money: this.money, isPregnant: this.isPregnant, gestationalAge: this.gestationalAge,
-        settlementId: this.settlementId.id, casteId: this.settlementId.casteId
-      };
-
-      let peopleApi = this.$resource(this.url + '/people/create');
-      peopleApi.save({}, human).then(response => {
-        console.log(response);
-        this.color = 'color: white';
-        this.message = "Human\"" + this.name + "\" successfully created";
-      }, response => {
-        console.log(response);
+      if (this.name.trim() === "" || this.money.trim() === "" || gestationalAge.toString().trim() === "") {
         this.color = 'color: red';
-        this.message = "Failed to create human \"" + this.name + "\"";
-      })
+        this.message = "Fill in all the fields";
+      } else {
+        let human = {
+          name: this.name, health: this.health, strength: this.strength,
+          money: this.money, isPregnant: this.isPregnant, gestationalAge: gestationalAge,
+          settlementId: this.settlementId.id, casteId: this.settlementId.casteId
+        };
+
+        let peopleApi = this.$resource(this.url + '/people/create');
+        peopleApi.save({}, human).then(response => {
+          console.log(response);
+          this.color = 'color: white';
+          this.message = "Human\"" + this.name + "\" successfully created";
+        }, response => {
+          console.log(response);
+          this.color = 'color: red';
+          this.message = "Failed to create human \"" + this.name + "\"";
+        })
+      }
     }
   }
 }

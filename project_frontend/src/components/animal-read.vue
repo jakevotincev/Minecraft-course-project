@@ -35,38 +35,36 @@ export default {
   data() {
     return {
       animals: [],
-      url: 'http://localhost:8080/api',
+      url: '/api',
       people: []
     }
   },
   methods: {
-    loadPeople() {
+    loadAnimals() {
       this.people = [];
+      this.animals = [];
       let peopleApi = this.$resource(this.url + '/people/readAll');
       peopleApi.get().then(response => {
         response.json().then(people => {
           people.forEach(human => {
             this.people.push(human);
           })
+          let animalsApi = this.$resource(this.url + '/animal/readAll');
+          animalsApi.get().then(response => {
+            response.json().then(animals => {
+              animals.forEach(animal => {
+                let human = this.people.find(human => human.id === animal.ownerId);
+                if (typeof human == "undefined") animal.ownerId = "nobody";
+                else animal.ownerId = human.name;
+                if (!animal.isPregnant) animal.gestationalAge = '-';
+                this.animals.push(animal);
+              })
+            })
+          })
+
         })
       })
     },
-    loadAnimals() {
-      this.animals = [];
-      this.loadPeople();
-      let animalsApi = this.$resource(this.url + '/animal/readAll');
-      animalsApi.get().then(response => {
-        response.json().then(animals => {
-          animals.forEach(animal => {
-            let human = this.people.find(human => human.id === animal.ownerId);
-            console.log(human)
-            if (typeof human == "undefined") animal.ownerId = "nobody";
-            else animal.ownerId = human.name;
-            this.animals.push(animal);
-          })
-        })
-      })
-    }
   },
   created() {
     this.loadAnimals();

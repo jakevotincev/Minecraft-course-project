@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       settlementId: '',
-      url: 'http://localhost:8080/api',
+      url: '/api',
       message: '',
       people: []
     }
@@ -63,7 +63,7 @@ export default {
         })
       }, response => {
         console.log(response);
-        this.message = "Something went wrong("
+        this.message = "You forgot to write settlement id. Write it and try again."
         this.show();
       })
     },

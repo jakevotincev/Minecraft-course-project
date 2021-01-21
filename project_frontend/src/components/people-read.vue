@@ -39,35 +39,34 @@ export default {
   data() {
     return {
       people: [],
-      url: 'http://localhost:8080/api',
+      url: '/api',
       castes: []
     }
   },
   methods: {
-    loadCastes(){
+    loadPeople() {
       this.castes = [];
+      this.people = [];
       let castesApi = this.$resource(this.url + '/caste/readAll');
       castesApi.get().then(response => {
         response.json().then(castes => {
           castes.forEach(caste => {
             this.castes.push(caste);
           })
-        })
-      })
-    },
-    loadPeople() {
-      this.people = [];
-      this.loadCastes();
-      let peopleApi = this.$resource(this.url + '/people/readAll');
-      peopleApi.get().then(response => {
-        response.json().then(people => {
-          people.forEach(human => {
-            human.casteId = this.castes[human.casteId-1].name;
-            this.people.push(human);
+          let peopleApi = this.$resource(this.url + '/people/readAll');
+          peopleApi.get().then(response => {
+            response.json().then(people => {
+              people.forEach(human => {
+                if (human.settlementId === null) human.settlementId = 'No';
+                human.casteId = this.castes[human.casteId - 1].name;
+                if (!human.isPregnant) human.gestationalAge = '-';
+                this.people.push(human);
+              })
+            })
           })
         })
       })
-    }
+    },
   },
   created() {
     this.loadPeople();

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class = "createBlock">
+    <div class="createBlock">
       <label for="name">Name</label>
       <input style="width: 200px" id="name" type="text" v-model="name">
       <br>
@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       name: '',
-      url: 'http://localhost:8080/api',
+      url: '/api',
       message: '',
       color: ''
     }
@@ -29,20 +29,23 @@ export default {
   methods: {
     create() {
       let name = this.name;
-      //validation
-      let world = {name: name};
-      let worldApi = this.$resource(this.url + '/world/create');
-      worldApi.save({}, world).then(result => {
-            console.log(result);
-            this.color = 'color: white';
-            this.message = "World \"" + name + "\" successfully created";
-          }, result => {
-            console.log(result);
-            this.color = 'color: red';
-            this.message = "Failed to create world \"" + name + "\"";
-          }
-      )
-
+      if (name.trim() !== "") {
+        let world = {name: name};
+        let worldApi = this.$resource(this.url + '/world/create');
+        worldApi.save({}, world).then(result => {
+              console.log(result);
+              this.color = 'color: white';
+              this.message = "World \"" + name + "\" successfully created";
+            }, result => {
+              console.log(result);
+              this.color = 'color: red';
+              this.message = "Failed to create world \"" + name + "\"";
+            }
+        )
+      } else {
+        this.color = 'color: red';
+        this.message = "Fill in all the fields";
+      }
     }
   },
 
